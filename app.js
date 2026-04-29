@@ -117,6 +117,19 @@ const ElectionApp = {
     },
 
     /**
+     * Sanitizes input strings to prevent XSS.
+     * @param {string} str - The raw input string.
+     * @returns {string} The sanitized string.
+     * @private
+     */
+    sanitize(str) {
+        if (typeof str !== 'string') return '';
+        const div = document.createElement('div');
+        div.textContent = str;
+        return div.innerHTML;
+    },
+
+    /**
      * Persists application state to localStorage.
      * @private
      */
