@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Election Learning Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1>Election Guide India</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="overall-progress"></div>
+            </div>
+            <p class="subtitle">Your progress: <span id="progress-text">0%</span></p>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main id="main-content">
+            
+            <!-- HOME SCREEN -->
+            <section id="screen-home" class="screen active">
+                <div class="glass-card welcome-card">
+                    <h2>Welcome, Voter!</h2>
+                    <p>Ready to learn about the world's largest democracy?</p>
+                </div>
+
+                <h3 class="section-title">Quick Links</h3>
+                <div class="grid-2">
+                    <div class="glass-card action-card" onclick="switchTab('flashcards')">
+                        <div class="card-icon">📚</div>
+                        <h4>Flashcards</h4>
+                        <p>Learn terms & roles</p>
+                    </div>
+                    <div class="glass-card action-card" onclick="switchTab('quiz')">
+                        <div class="card-icon">📝</div>
+                        <h4>Take Quiz</h4>
+                        <p>Test your knowledge</p>
+                    </div>
+                </div>
+
+                <div class="glass-card fact-card">
+                    <h4>Daily Fact 🇮🇳</h4>
+                    <p>The first General Election of India started on 25 October 1951 and continued till 21 February 1952.</p>
+                </div>
+            </section>
+
+            <!-- FLASHCARDS SCREEN -->
+            <section id="screen-flashcards" class="screen">
+                <h2 class="screen-title">Learning Flashcards</h2>
+                <div class="flashcard-container" id="flashcard-container">
+                    <!-- Cards injected via JS -->
+                </div>
+                <div class="flashcard-controls">
+                    <button class="btn btn-secondary" onclick="prevCard()">Previous</button>
+                    <span id="card-counter">1 / 5</span>
+                    <button class="btn btn-primary" onclick="nextCard()">Next</button>
+                </div>
+            </section>
+
+            <!-- QUIZ SCREEN -->
+            <section id="screen-quiz" class="screen">
+                <h2 class="screen-title">Knowledge Quiz</h2>
+                <div id="quiz-container" class="glass-card quiz-card">
+                    <!-- Quiz content injected via JS -->
+                </div>
+            </section>
+
+            <!-- CHAT SCREEN (MOCK) -->
+            <section id="screen-chat" class="screen">
+                <h2 class="screen-title">Ask Assistant</h2>
+                <div class="chat-container glass-card">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message bot-message">Hello! I am your Election Assistant. What would you like to know about the Indian election process?</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Type your question...">
+                        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- BOTTOM NAVIGATION -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-target="home" onclick="switchTab('home')">
+                <span class="icon">🏠</span>
+                <span>Home</span>
+            </button>
+            <button class="nav-btn" data-target="flashcards" onclick="switchTab('flashcards')">
+                <span class="icon">📚</span>
+                <span>Learn</span>
+            </button>
+            <button class="nav-btn" data-target="quiz" onclick="switchTab('quiz')">
+                <span class="icon">📝</span>
+                <span>Quiz</span>
+            </button>
+            <button class="nav-btn" data-target="chat" onclick="switchTab('chat')">
+                <span class="icon">🤖</span>
+                <span>Ask AI</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
