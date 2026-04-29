@@ -3,82 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Learning Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Election Guide India - An interactive assistant to learn about the Indian electoral process, including flashcards, quizzes, and a chat assistant.">
+    <meta name="keywords" content="Election, India, Voter Guide, Democracy, EVM, NOTA, Quiz, Flashcards">
+    <meta name="author" content="Election Guide India">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Election Guide India">
+    <meta property="og:description" content="Master the Indian electoral process with interactive tools.">
+    <meta property="og:type" content="website">
+    
+    <title>Election Guide India | Interactive Learning Assistant</title>
+    <link rel="icon" type="image/png" href="election_guide_logo_1777472154778.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="app-container">
         <!-- HEADER -->
         <header class="app-header">
-            <h1>Election Guide India</h1>
-            <div class="progress-container">
-                <div class="progress-bar" id="overall-progress"></div>
+            <div class="header-top">
+                <div class="logo-wrapper">
+                    <img src="logo.png" alt="Election Guide India Logo" class="app-logo">
+                    <h1>Election Guide India</h1>
+                </div>
+                <span class="badge" aria-label="Version 2.0">v2.0</span>
             </div>
-            <p class="subtitle">Your progress: <span id="progress-text">0%</span></p>
+            <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-wrapper">
+                <div class="progress-bar" id="overall-progress" style="width: 0%;"></div>
+            </div>
+            <p class="subtitle">Mission: Informed Citizen • <span id="progress-text" aria-live="polite">0%</span></p>
         </header>
 
         <!-- MAIN CONTENT -->
         <main id="main-content">
             
             <!-- HOME SCREEN -->
-            <section id="screen-home" class="screen active">
+            <section id="screen-home" class="screen active" aria-labelledby="home-title">
                 <div class="glass-card welcome-card">
-                    <h2>Welcome, Voter!</h2>
-                    <p>Ready to learn about the world's largest democracy?</p>
+                    <h2 id="home-title">Welcome, Voter!</h2>
+                    <p>Ready to learn about the world's largest democracy? Explore our interactive tools to become an informed citizen.</p>
                 </div>
 
-                <h3 class="section-title">Quick Links</h3>
+                <h2 class="section-title">Quick Links</h2>
                 <div class="grid-2">
-                    <div class="glass-card action-card" onclick="switchTab('flashcards')">
-                        <div class="card-icon">📚</div>
+                    <button class="glass-card action-card" data-nav="flashcards" aria-label="Open Learning Flashcards">
+                        <div class="card-icon" role="img" aria-label="Books Icon">📚</div>
                         <h4>Flashcards</h4>
                         <p>Learn terms & roles</p>
-                    </div>
-                    <div class="glass-card action-card" onclick="switchTab('quiz')">
-                        <div class="card-icon">📝</div>
+                    </button>
+                    <button class="glass-card action-card" data-nav="quiz" aria-label="Start Knowledge Quiz">
+                        <div class="card-icon" role="img" aria-label="Memo Icon">📝</div>
                         <h4>Take Quiz</h4>
                         <p>Test your knowledge</p>
-                    </div>
+                    </button>
                 </div>
 
                 <div class="glass-card fact-card">
-                    <h4>Daily Fact 🇮🇳</h4>
-                    <p>The first General Election of India started on 25 October 1951 and continued till 21 February 1952.</p>
+                    <div class="fact-header">
+                        <h3>Daily Fact</h3>
+                        <span class="flag-icon" role="img" aria-label="Indian Flag">🇮🇳</span>
+                    </div>
+                    <p id="daily-fact-text">The first General Election of India started on 25 October 1951 and continued till 21 February 1952.</p>
                 </div>
             </section>
 
             <!-- FLASHCARDS SCREEN -->
-            <section id="screen-flashcards" class="screen">
-                <h2 class="screen-title">Learning Flashcards</h2>
-                <div class="flashcard-container" id="flashcard-container">
-                    <!-- Cards injected via JS -->
+            <section id="screen-flashcards" class="screen" aria-labelledby="flashcards-title">
+                <h2 id="flashcards-title" class="screen-title">Learning Flashcards</h2>
+                <div class="flashcard-container" id="flashcard-container" aria-live="polite">
+                    <!-- Cards injected via JS safely -->
                 </div>
                 <div class="flashcard-controls">
-                    <button class="btn btn-secondary" onclick="prevCard()">Previous</button>
-                    <span id="card-counter">1 / 5</span>
-                    <button class="btn btn-primary" onclick="nextCard()">Next</button>
+                    <button class="btn btn-secondary" id="prev-card-btn" aria-label="Go to Previous Flashcard">Previous</button>
+                    <span id="card-counter" aria-live="polite">1 / 10</span>
+                    <button class="btn btn-primary" id="next-card-btn" aria-label="Go to Next Flashcard">Next</button>
                 </div>
             </section>
 
             <!-- QUIZ SCREEN -->
-            <section id="screen-quiz" class="screen">
-                <h2 class="screen-title">Knowledge Quiz</h2>
+            <section id="screen-quiz" class="screen" aria-labelledby="quiz-title">
+                <h2 id="quiz-title" class="screen-title">Knowledge Quiz</h2>
                 <div id="quiz-container" class="glass-card quiz-card">
-                    <!-- Quiz content injected via JS -->
+                    <!-- Quiz content injected via JS safely -->
                 </div>
             </section>
 
-            <!-- CHAT SCREEN (MOCK) -->
-            <section id="screen-chat" class="screen">
-                <h2 class="screen-title">Ask Assistant</h2>
+            <!-- CHAT SCREEN -->
+            <section id="screen-chat" class="screen" aria-labelledby="chat-title">
+                <h2 id="chat-title" class="screen-title">Ask Assistant</h2>
                 <div class="chat-container glass-card">
-                    <div class="chat-messages" id="chat-messages">
+                    <div class="chat-messages" id="chat-messages" aria-live="polite">
                         <div class="message bot-message">Hello! I am your Election Assistant. What would you like to know about the Indian election process?</div>
                     </div>
                     <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Type your question...">
-                        <button class="btn btn-primary" onclick="sendMessage()">Send</button>
+                        <input type="text" id="chat-input" placeholder="Type your question..." aria-label="Type your question to the AI assistant">
+                        <button class="btn btn-primary" id="send-chat-btn" aria-label="Send message to assistant">Send</button>
                     </div>
                 </div>
             </section>
@@ -86,21 +107,21 @@
         </main>
 
         <!-- BOTTOM NAVIGATION -->
-        <nav class="bottom-nav">
-            <button class="nav-btn active" data-target="home" onclick="switchTab('home')">
-                <span class="icon">🏠</span>
+        <nav class="bottom-nav" aria-label="Main Navigation">
+            <button class="nav-btn active" data-target="home" aria-label="Go to Home Screen">
+                <span class="icon" role="img" aria-hidden="true">🏠</span>
                 <span>Home</span>
             </button>
-            <button class="nav-btn" data-target="flashcards" onclick="switchTab('flashcards')">
-                <span class="icon">📚</span>
+            <button class="nav-btn" data-target="flashcards" aria-label="Go to Learn Section">
+                <span class="icon" role="img" aria-hidden="true">📚</span>
                 <span>Learn</span>
             </button>
-            <button class="nav-btn" data-target="quiz" onclick="switchTab('quiz')">
-                <span class="icon">📝</span>
+            <button class="nav-btn" data-target="quiz" aria-label="Go to Quiz Section">
+                <span class="icon" role="img" aria-hidden="true">📝</span>
                 <span>Quiz</span>
             </button>
-            <button class="nav-btn" data-target="chat" onclick="switchTab('chat')">
-                <span class="icon">🤖</span>
+            <button class="nav-btn" data-target="chat" aria-label="Go to Assistant Chat">
+                <span class="icon" role="img" aria-hidden="true">🤖</span>
                 <span>Ask AI</span>
             </button>
         </nav>

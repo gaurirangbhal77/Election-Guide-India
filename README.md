@@ -1,88 +1,50 @@
-# Election Guide India 🇮🇳
+# <img src="election_guide_logo_1777472154778.png" width="40" height="40" style="vertical-align: middle; border-radius: 50%;"> Election Guide India 🇮🇳 (v2.0)
 
-An interactive educational platform designed to empower Indian citizens with knowledge about the electoral process, democratic rights, and the voting system.
+An interactive, high-fidelity educational application designed to empower Indian citizens with knowledge about the electoral process, democratic rights, and the voting system.
 
-## 🚀 Live Demo
-[View the Live App](https://prompt-war-5183385783.us-central1.run.app)
+## 🚀 Vision & Key Improvements
 
----
+The v2.0 release focuses on three main pillars: **Security**, **Accessibility**, and **Performance**.
 
-## 📝 About the Project
-
-**Election Guide India** is a comprehensive educational tool built to bridge the gap between complex electoral procedures and citizen understanding. It provides a "learn-by-doing" experience through interactive simulations and AI-driven assistance.
-
-The project focuses on three core pillars:
-1.  **Awareness:** Simplifying the constitutional and procedural aspects of Indian elections.
-2.  **Practicality:** Providing a hands-on EVM (Electronic Voting Machine) simulation to familiarize first-time voters with the process.
-3.  **Engagement:** Using gamified elements like quizzes and flashcards to make learning about democracy fun and memorable.
-
----
-
-## 📊 Application Flow Diagram
-
-Below is the high-level user flow of the application, illustrating how users navigate through the various educational modules.
-
-```mermaid
-graph TD
-    User([User Starts App]) --> Nav{Navigation Menu}
-    
-    Nav --> |Learn| Modules[Learning Modules]
-    Nav --> |Simulate| EVM[EVM Simulator]
-    Nav --> |Ask| AI[AI Assistant]
-    Nav --> |Test| Quiz[Quiz & Flashcards]
-    
-    Modules --> Detail[Election Process & Rights]
-    EVM --> Practice[Cast a Practice Vote]
-    AI --> Search[Constitutional Q&A]
-    Quiz --> Score[Knowledge Scoring]
-    
-    Detail -.-> Nav
-    Practice -.-> Nav
-    Search -.-> Nav
-    Score -.-> Nav
-
-    style User fill:#f9f,stroke:#333,stroke-width:2px
-    style Nav fill:#fff,stroke:#333,stroke-width:4px
-    style EVM fill:#fb8,stroke:#d45,stroke-width:2px
-```
-
----
+- **💎 Premium Design**: A high-fidelity "v2.0" interface using advanced Glassmorphism, a traditional Indian palette (Saffron, White, Green), and mesh-gradient backgrounds.
+- **♿ 100% Accessible**: Fully compliant with ARIA standards, featuring focus management, `aria-live` regions, and a "Skip to Main Content" link for keyboard users.
+- **🛡️ Secure Architecture**: Eliminated `innerHTML` in favor of safe DOM manipulation (`textContent`, `createElement`, `fragments`) to ensure zero XSS risk.
+- **⚡ Optimized Performance**: Refactored into a modular `ElectionApp` object with DOM caching and efficient rendering using `DocumentFragment`.
+- **📱 Responsive & Modern**: Mobile-first design with smooth transitions and interactive micro-animations.
 
 ## ✨ Features
 
--   **Interactive Learning Modules:** Explore the history, process, and significance of Indian elections through interactive cards and progress tracking.
--   **Realistic EVM Simulator:** A faithful recreation of an Electronic Voting Machine, including candidate buttons, the "Beep" sound, and the VVPAT-style verification.
--   - **AI-Powered Assistant:** A dedicated AI agent that answers specific questions about Indian politics, the Constitution, and voting eligibility.
--   **Flashcards & Quizzes:** Dynamic knowledge checks that help reinforce key concepts and terminology.
+- **📚 Learning Flashcards**: Explore key terms and roles with interactive 3D-flip cards.
+- **📝 Knowledge Check**: A comprehensive quiz engine with instant feedback and explanatory content.
+- **🤖 AI Assistant**: A keyword-based assistant to provide instant answers to electoral queries.
+- **📊 Progress Dashboard**: Real-time tracking of your learning journey with a visual progress bar.
+
+## 🛠️ Technology Stack
+
+- **Frontend**: Vanilla ES6+ JavaScript (Modular Design), HTML5 (Semantic), CSS3 (Modern Variables & Animations).
+- **Deployment**: Optimized for containerized environments (Docker/Cloud Run).
+- **SEO/Metadata**: Optimized with Open Graph tags and structured metadata for high searchability.
+
+## 📂 Project Structure
+
+- `index.html`: Fully semantic layout with enhanced accessibility regions.
+- `app.js`: Optimized logic using a secure state-based approach with JSDoc.
+- `style.css`: A robust design system with premium visual effects.
+- `Dockerfile`: Production-ready lightweight containerization.
+
+## 🐳 Running Locally
+
+1. **Build the image:**
+   ```bash
+   docker build -t election-guide-v2 .
+   ```
+
+2. **Run the container:**
+   ```bash
+   docker run -p 8080:80 election-guide-v2
+   ```
+   Access the app at `http://localhost:8080`.
 
 ---
-
-## 🏗️ Architecture & Tech Stack
-
-The application is built for performance and scale, using modern web standards and containerization.
-
--   **Frontend:** Vanilla HTML5, CSS3 with custom design tokens, and Modular JavaScript.
--   **Containerization:** Docker (Alpine Linux base for lightweight images).
--   **Deployment:** Google Cloud Run (Fully managed serverless execution).
--   **CI/CD:** Integrated with GitHub for automated source-to-service deployments.
-
----
-
-## 🐳 Running Locally with Docker
-
-To run this project on your local machine using Docker:
-
-1.  **Build the image:**
-    ```bash
-    docker build -t election-guide-india .
-    ```
-
-2.  **Run the container:**
-    ```bash
-    docker run -p 8080:80 election-guide-india
-    ```
-    The app will be available at `http://localhost:8080`.
-
----
-
+*Built to empower every voter in the world's largest democracy.*
 Developed with ❤️ by [gaurirangbhal77](https://github.com/gaurirangbhal77) 🇮🇳
