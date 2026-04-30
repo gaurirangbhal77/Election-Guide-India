@@ -36,11 +36,13 @@ graph TD
 
 ## 🚀 Key Features
 
-- **📚 Interactive Learning**: 3D-flip flashcards to master electoral terminology and roles.
-- **📝 Knowledge Check**: Dynamic quiz system with real-time feedback and progress tracking.
+- **📚 Interactive Learning**: 3D-flip flashcards with curated **YouTube video explainers** to master electoral terminology and roles.
+- **📝 Advanced Knowledge Check**: Dynamic quiz system featuring a **15-second timer**, comprehensive **score tracking**, final percentage calculation, and persistent progress.
+- **✅ Voter Readiness Checklist**: Interactive checklist to ensure citizens are fully prepared for Election Day, integrated with the global progress bar.
 - **🤖 AI Chat Assistant**: Keyword-driven assistant providing instant answers about EVMs, NOTA, and the voting process.
-- **📊 Progress Persistence**: Automatic saving and loading of your learning journey using encoded `localStorage`.
-- **💎 Premium Design**: State-of-the-art Glassmorphism UI with smooth micro-interactions and an Indian-centric palette.
+- **📊 Progress Persistence**: Automatic saving and loading of your learning journey and quiz scores using `localStorage`.
+- **💎 Premium Design**: State-of-the-art Glassmorphism UI with smooth micro-interactions, an Indian-centric palette, and fully custom CSS (no external styling dependencies).
+- **🛡️ High Security**: Strict Content Security Policy (`style-src 'self'`) ensuring zero inline script/style vulnerabilities.
 
 ---
 

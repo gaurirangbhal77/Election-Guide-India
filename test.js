@@ -1,77 +1,48 @@
-/**
- * Election Guide India - Basic Functional Tests
- * Validates core application logic for quality assurance.
- */
+'use strict';
 
-const testSuite = {
-    /**
-     * Mock of the app state for testing logic in isolation.
-     */
-    mockState: {
-        progress: 0,
-        responses: {
-            "evm": "Electronic Voting Machine (EVM) is used to record votes.",
-            "nota": "None of the Above (NOTA) allows voters to officially register a vote of rejection.",
-        }
-    },
+// Simple functional tests
 
-    /**
-     * Tests the bot's response logic.
-     */
-    testComputeBotResponse() {
-        console.log("Running: testComputeBotResponse...");
-        
-        const computeResponse = (input) => {
-            const query = input.toLowerCase();
-            const match = Object.entries(testSuite.mockState.responses).find(([key]) => {
-                const regex = new RegExp(`\\b${key}\\b`, 'i');
-                return regex.test(query);
-            });
-            return match ? match[1] : "Fallback";
-        };
+function testProgress() {
+    const before = ElectionApp.state.progress;
+    ElectionApp.updateProgressBar(10);
 
-        const r1 = computeResponse("What is an EVM?");
-        const r2 = computeResponse("How does NOTA work?");
-        const r3 = computeResponse("Hello");
-
-        console.assert(r1.includes("Electronic Voting Machine"), "Failed: EVM response");
-        console.assert(r2.includes("None of the Above"), "Failed: NOTA response");
-        console.assert(r3 === "Fallback", "Failed: Fallback response");
-        
-        console.log("Passed: testComputeBotResponse");
-    },
-
-    /**
-     * Tests the progress calculation logic.
-     */
-    testProgressLogic() {
-        console.log("Running: testProgressLogic...");
-        
-        let progress = 0;
-        const update = (amount) => Math.min(100, Math.max(0, progress + amount));
-
-        progress = update(10);
-        console.assert(progress === 10, "Failed: Increment progress");
-
-        progress = update(100);
-        console.assert(progress === 100, "Failed: Cap progress at 100");
-
-        console.log("Passed: testProgressLogic");
-    },
-
-    runAll() {
-        console.log("--- Starting Test Suite ---");
-        try {
-            this.testComputeBotResponse();
-            this.testProgressLogic();
-            console.log("--- All Tests Passed Successfully! ---");
-        } catch (e) {
-            console.error("Test Suite Failed:", e);
-        }
+    if (ElectionApp.state.progress === before + 10) {
+        console.log("✅ Progress Test Passed");
+    } else {
+        console.error("❌ Progress Test Failed");
     }
-};
-
-// Auto-run if in browser console or node
-if (typeof window !== 'undefined' || typeof process !== 'undefined') {
-    testSuite.runAll();
 }
+
+function testSanitize() {
+    const input = "<script>alert(1)</script>";
+    const output = ElectionApp.sanitizeInput(input);
+
+    if (!output.includes("<script>")) {
+        console.log("✅ Sanitize Test Passed");
+    } else {
+        console.error("❌ Sanitize Test Failed");
+    }
+}
+
+function testQuizLogic() {
+    const q = ElectionApp.data.quiz[0];
+    if (q.correct === 1) {
+        console.log("✅ Quiz logic valid");
+    } else {
+        console.error("❌ Quiz logic invalid");
+    }
+}
+
+function testChatResponse() {
+    const res = ElectionApp.computeBotResponse("What is EVM?");
+    if (res.toLowerCase().includes("electronic voting")) {
+        console.log("✅ Chat Test Passed");
+    } else {
+        console.error("❌ Chat Test Failed");
+    }
+}
+
+testProgress();
+testSanitize();
+testQuizLogic();
+testChatResponse();

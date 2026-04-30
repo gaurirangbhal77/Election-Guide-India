@@ -13,11 +13,10 @@
     <meta property="og:type" content="website">
     
     <!-- Content Security Policy (CSP) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; frame-src https://www.youtube.com;">
     
     <title>Election Guide India | Interactive Learning Assistant</title>
     <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,19 +33,28 @@
                 <span class="badge" aria-label="Version 2.0">v2.0</span>
             </div>
             <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-wrapper">
-                <div class="progress-bar" id="overall-progress" style="width: 0%;"></div>
+                <svg width="100%" height="6" class="progress-svg">
+                    <rect id="overall-progress" x="0" y="0" width="0%" height="100%" fill="url(#progress-gradient)" rx="3" ry="3" />
+                    <defs>
+                        <linearGradient id="progress-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff9933" />
+                            <stop offset="100%" stop-color="#138808" />
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
             <p class="subtitle">Mission: Informed Citizen • <span id="progress-text" aria-live="polite">0%</span></p>
         </header>
 
         <!-- MAIN CONTENT -->
-        <main id="main-content">
+        <main id="main-content" role="main">
             
             <!-- HOME SCREEN -->
             <section id="screen-home" class="screen active" aria-labelledby="home-title">
                 <div class="glass-card welcome-card">
                     <h2 id="home-title">Welcome, Voter!</h2>
                     <p>Ready to learn about the world's largest democracy? Explore our interactive tools to become an informed citizen.</p>
+                    <button class="btn btn-secondary btn-small" id="reset-progress-btn">Reset All Progress</button>
                 </div>
 
                 <h2 class="section-title">Quick Links</h2>
@@ -101,29 +109,44 @@
                         <div class="message bot-message">Hello! I am your Election Assistant. What would you like to know about the Indian election process?</div>
                     </div>
                     <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Type your question..." aria-label="Type your question to the AI assistant">
+                        <input type="text" id="chat-input" placeholder="Type your question..." aria-label="Type your question to the AI assistant" role="textbox">
                         <button class="btn btn-primary" id="send-chat-btn" aria-label="Send message to assistant">Send</button>
                     </div>
+                </div>
+            </section>
+
+            <!-- CHECKLIST SCREEN -->
+            <section id="screen-checklist" class="screen" aria-labelledby="checklist-title">
+                <h2 id="checklist-title" class="screen-title">Voter Readiness Checklist</h2>
+                <div class="glass-card checklist-card">
+                    <p class="checklist-intro">Follow these steps to ensure you are ready for Election Day.</p>
+                    <ul class="checklist-items" id="voter-checklist">
+                        <!-- Items injected via JS -->
+                    </ul>
                 </div>
             </section>
 
         </main>
 
         <!-- BOTTOM NAVIGATION -->
-        <nav class="bottom-nav" aria-label="Main Navigation">
-            <button class="nav-btn active" data-target="home" aria-label="Go to Home Screen">
+        <nav class="bottom-nav" aria-label="Main Navigation" role="navigation">
+            <button class="nav-btn active" data-target="home" aria-label="Go to Home Screen" role="tab" aria-selected="true">
                 <span class="icon" role="img" aria-hidden="true">🏠</span>
                 <span>Home</span>
             </button>
-            <button class="nav-btn" data-target="flashcards" aria-label="Go to Learn Section">
+            <button class="nav-btn" data-target="flashcards" aria-label="Go to Learn Section" role="tab" aria-selected="false">
                 <span class="icon" role="img" aria-hidden="true">📚</span>
                 <span>Learn</span>
             </button>
-            <button class="nav-btn" data-target="quiz" aria-label="Go to Quiz Section">
+            <button class="nav-btn" data-target="quiz" aria-label="Go to Quiz Section" role="tab" aria-selected="false">
                 <span class="icon" role="img" aria-hidden="true">📝</span>
                 <span>Quiz</span>
             </button>
-            <button class="nav-btn" data-target="chat" aria-label="Go to Assistant Chat">
+            <button class="nav-btn" data-target="checklist" aria-label="Go to Checklist Section" role="tab" aria-selected="false">
+                <span class="icon" role="img" aria-hidden="true">✅</span>
+                <span>Ready</span>
+            </button>
+            <button class="nav-btn" data-target="chat" aria-label="Go to Assistant Chat" role="tab" aria-selected="false">
                 <span class="icon" role="img" aria-hidden="true">🤖</span>
                 <span>Ask AI</span>
             </button>
